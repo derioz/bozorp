@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html class="dark scroll-smooth" lang="en">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>BozoRP - Dark Circus Roleplay</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rye&family=Spline+Sans:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rye&family=Spline+Sans:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
         tailwind.config = {
@@ -43,8 +47,8 @@
                             '100%': { transform: 'translateX(-50%)' },
                         },
                         fadeIn: {
-                             '0%': { opacity: '0', transform: 'translateY(10px)' },
-                             '100%': { opacity: '1', transform: 'translateY(0)' },
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
                         },
                         drip: {
                             '0%': { transform: 'translateY(0)', opacity: '1' },
@@ -70,14 +74,29 @@
         .bg-clip-text {
             -webkit-background-clip: text !important;
             background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
             color: transparent !important;
+        }
+
+        /* Additional fix for gradient text combinations */
+        .text-transparent.bg-clip-text {
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+
+        /* Ensure gradients are applied */
+        [class*="bg-gradient-"] {
+            background-image: var(--tw-gradient-stops) !important;
         }
 
         /* Fallback for older browsers or if clip fails */
         @supports not (background-clip: text) {
             .bg-clip-text {
-                color: #ff0033 !important; /* Fallback to primary color */
+                color: #ff0033 !important;
+                /* Fallback to primary color */
                 background-clip: border-box !important;
+                -webkit-text-fill-color: #ff0033 !important;
             }
         }
 
@@ -85,7 +104,7 @@
         .text-neon-red {
             text-shadow: 0 0 10px rgba(255, 0, 51, 0.8);
         }
-        
+
         /* Glassmorphism Utilities */
         .glass-panel {
             background: rgba(10, 0, 5, 0.7);
@@ -103,23 +122,26 @@
             background-color: #050002;
             overflow-x: hidden;
         }
-        
+
         /* Scrollbar styles */
         ::-webkit-scrollbar {
             width: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: #050002;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #333;
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #ff0033;
         }
     </style>
-<script type="importmap">
+    <script type="importmap">
 {
   "imports": {
     "react/": "https://esm.sh/react@^19.2.4/",
@@ -129,10 +151,13 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-background-dark text-white font-display overflow-x-hidden selection:bg-primary selection:text-white relative bg-noise">
+
+<body
+    class="bg-background-dark text-white font-display overflow-x-hidden selection:bg-primary selection:text-white relative bg-noise">
     <div id="root"></div>
-<script type="module" src="/index.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>
