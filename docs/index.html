@@ -70,34 +70,20 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
-        /* FIX: Ensure background-clip: text works and has a fallback */
-        .bg-clip-text {
-            -webkit-background-clip: text !important;
-            background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            color: transparent !important;
-        }
 
-        /* Additional fix for gradient text combinations */
-        .text-transparent.bg-clip-text {
-            -webkit-background-clip: text !important;
-            background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-        }
 
-        /* Ensure gradients are applied */
-        [class*="bg-gradient-"] {
-            background-image: var(--tw-gradient-stops) !important;
-        }
 
-        /* Fallback for older browsers or if clip fails */
-        @supports not (background-clip: text) {
-            .bg-clip-text {
-                color: #ff0033 !important;
-                /* Fallback to primary color */
-                background-clip: border-box !important;
-                -webkit-text-fill-color: #ff0033 !important;
-            }
+
+
+
+
+
+
+        /* Webkit support for gradient text */
+        .text-transparent {
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* TEXT EFFECTS */
@@ -153,7 +139,7 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/assets/index-YAu40hXv.js"></script>
+  <script type="module" crossorigin src="/assets/index-C0Ll_BAq.js"></script>
 </head>
 
 <body
