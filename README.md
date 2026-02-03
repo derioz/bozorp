@@ -34,6 +34,20 @@ This project is optimized for deployment on **Vercel**.
 4.  **Environment Variables** (Optional): Add any required env vars (see Firebase section below).
 5.  **Deploy**: Click **"Deploy"**.
 
+### 🌐 Custom Domain DNS
+
+To connect `bozorp.vexelstudios.xyz`:
+
+1.  Go to your Domain Registrar (where you bought the domain).
+2.  Add a **CNAME** record:
+    -   **Type**: `CNAME`
+    -   **Name**: `bozorp` (subdomain)
+    -   **Value**: `cname.vercel-dns.com`
+3.  (Optional) If using a root domain (e.g., `vexelstudios.xyz`):
+    -   **Type**: `A`
+    -   **Name**: `@`
+    -   **Value**: `76.76.21.21`
+
 ## 🔥 Firebase Setup
 
 The project is designed to integrate with Firebase for Authentication and Firestore.
