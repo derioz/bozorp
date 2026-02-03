@@ -89,7 +89,7 @@ const GallerySection: React.FC = () => {
     };
 
     return (
-        <section id="gallery" className="w-full py-24 bg-[#080205] relative scroll-mt-20 overflow-hidden">
+        <section id="gallery" className="w-full py-24 bg-[#050002] relative scroll-mt-20 overflow-hidden">
             {/* Background Ambience */}
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/black-scales.png')] opacity-40 pointer-events-none"></div>
             <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
@@ -106,7 +106,7 @@ const GallerySection: React.FC = () => {
                     <span className="text-primary text-xs font-bold uppercase tracking-[0.3em] mb-4 block animate-pulse font-display">
                         Visual Evidence
                     </span>
-                    <h2 className="text-4xl md:text-6xl font-display text-white mb-6 tracking-wide drop-shadow-2xl">
+                    <h2 className="text-4xl md:text-6xl font-circus text-white mb-6 tracking-wide drop-shadow-2xl">
                         LIFE IN THE <span className="relative inline-block" style={{
                             background: 'linear-gradient(to right, #ff0033, #ff5e00)',
                             WebkitBackgroundClip: 'text',
@@ -130,13 +130,16 @@ const GallerySection: React.FC = () => {
                         <div
                             key={item.id}
                             onClick={() => setSelectedImage(item.src)}
-                            className={`relative group rounded-2xl overflow-hidden border border-white/5 bg-[#12030b] cursor-pointer transition-all duration-500 hover:z-20 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,0,50,0.3)] hover:border-primary/50 ${getSpanClasses(
+                            className={`relative group rounded-2xl overflow-hidden border border-white/5 bg-[#12030b] cursor-pointer transition-all duration-500 hover:z-20 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)] hover:border-primary/30 ${getSpanClasses(
                                 item.colSpan,
                                 item.rowSpan
                             )}`}
                             onMouseEnter={() => setHoveredId(item.id)}
                             onMouseLeave={() => setHoveredId(null)}
                         >
+                            {/* Scanline Effect */}
+                            <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.5)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%] opacity-20 pointer-events-none z-10"></div>
+
                             {/* Image Layer */}
                             <div
                                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"

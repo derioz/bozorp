@@ -285,7 +285,7 @@ const RulesSection: React.FC = () => {
 
         <div className="text-center mb-16">
           <span className="text-gray-500 text-xs font-bold uppercase tracking-[0.3em] mb-4 block font-display animate-pulse">Code of Conduct</span>
-          <h2 className="text-4xl md:text-5xl font-display text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-circus text-white mb-6">
             SERVER <span className="relative inline-block">
               <span className="absolute -inset-1 blur-md bg-primary/20"></span>
               <span className="relative z-10" style={{

@@ -165,7 +165,7 @@ const ActivitiesSection: React.FC = () => {
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-20">
           <span className="text-primary text-xs font-bold uppercase tracking-[0.3em] mb-4 block animate-pulse font-display">Welcome To The City</span>
-          <h2 className="text-4xl md:text-6xl font-display text-white mb-8 tracking-wide">
+          <h2 className="text-4xl md:text-6xl font-circus text-white mb-8 tracking-wide">
             CHOOSE YOUR <span className="relative inline-block">
               <span className="absolute -inset-1 blur-lg bg-primary/30 animate-pulse"></span>
               <span className="relative z-10" style={{
