@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import StatsBar from './components/StatsBar';
 import AboutSection from './components/AboutSection';
 import FeaturesSection from './components/FeaturesSection';
+import GallerySection from './components/GallerySection';
 import ActivitiesSection from './components/ActivitiesSection';
 import RulesSection from './components/RulesSection';
 import CTASection from './components/CTASection';
@@ -18,6 +19,7 @@ const App: React.FC = () => {
         <StatsBar />
         <AboutSection />
         <FeaturesSection />
+        <GallerySection />
         <ActivitiesSection />
         <RulesSection />
         <CTASection />
