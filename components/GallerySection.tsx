@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Button from './ui/Button';
 
 interface MediaItem {
     id: number;
@@ -157,7 +158,7 @@ const GallerySection: React.FC = () => {
 
                             {/* Content Info */}
                             <div className={`absolute bottom-0 left-0 p-6 w-full transform transition-all duration-500 ${hoveredId === item.id ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0 md:opacity-100 md:translate-y-0'}`}>
-                                <span className="inline-block px-2 py-1 mb-2 text-[10px] font-bold uppercase tracking-wider text-black bg-primary rounded-sm shadow-[0_0_10px_rgba(255,0,0,0.5)]">
+                                <span className="inline-block px-2 py-1 mb-2 text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 border border-primary/20 rounded-sm backdrop-blur-md shadow-[0_0_10px_rgba(255,0,51,0.2)]">
                                     {item.category}
                                 </span>
                                 <h3 className="text-xl md:text-2xl font-display text-white drop-shadow-md tracking-wide">
@@ -173,10 +174,9 @@ const GallerySection: React.FC = () => {
 
                 {/* Footer / More Button */}
                 <div className="mt-12 text-center">
-                    <button className="relative px-8 py-3 bg-transparent border border-primary/50 text-white font-display uppercase tracking-widest text-sm hover:bg-primary/10 hover:border-primary transition-all duration-300 group overflow-hidden">
-                        <span className="relative z-10 transition-colors group-hover:text-primary-foreground">View Full Gallery</span>
-                        <div className="absolute inset-0 bg-primary/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out skew-x-12"></div>
-                    </button>
+                    <Button variant="outline" size="md">
+                        VIEW FULL GALLERY
+                    </Button>
                 </div>
 
             </div>
