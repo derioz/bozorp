@@ -1,90 +1,156 @@
-# BOZORP - Dark Circus Roleplay
+# BOZORP
 
 > "Welcome to the Greatest Show on Earth... that never ends."
 
-A premium, immersive landing page for the **Dark Circus** roleplay server. Built with React, Vite, and Tailwind CSS.
+A premium, immersive website and admin panel for the **BozoRP** roleplay community. Built with React, Vite, Tailwind CSS, Firebase, and Framer Motion.
+
+---
 
 ## 🎪 Features
 
--   **Dark Circus Theme**: A custom aesthetic blending dark neon, grunge textures, and high-contrast typography.
--   **Interactive Gallery**: A "Bento Grid" style media gallery with lightbox support, hover animations, and glitch effects.
--   **Lore & Professions**: Detailed sections for server backstory ("The Lore") and job opportunities ("The Hustle").
--   **Rules & Guidelines**: A clean, accessible layout for server rules.
--   **Responsive Design**: Fully optimized for mobile, tablet, and desktop.
--   **Modern Tech Stack**:
-    -   ⚡ [Vite](https://vitejs.dev/) - Blazing fast build tool.
-    -   ⚛️ [React](https://react.dev/) - UI Library.
-    -   🎨 [Tailwind CSS](https://tailwindcss.com/) - Utility-first styling.
-    -   🧱 [TypeScript](https://www.typescriptlang.org/) - Type safety.
+### Public Website
+- **Dark Themed Landing Page** — Custom aesthetic with neon accents, animated gradients, and premium typography.
+- **Interactive Gallery** — Bento grid media gallery with lightbox, hover animations, and glitch effects.
+- **Staff Section** — Animated staff cards with role-colored accents, glow effects, and click-to-view detail modals. Displays sub-roles, bios, and social links.
+- **Rules & Guidelines** — Clean, accessible layout for server rules pulled from Firestore.
+- **Clips Section** — Embedded Twitch clips showcase.
+- **Notification System** — Real-time notifications for ticket replies and updates.
+- **Responsive Design** — Fully optimized for mobile, tablet, and desktop.
 
-## 🚀 Deployment (Vercel)
+### Admin Panel (`/admin`)
+- **Authentication** — Email/password sign-in **and sign-up**, plus Google OAuth.
+- **Staff Manager** — Full staff CRUD:
+  - **Add Staff** — Simple form (display name, role, title, sub-roles). No email/password needed — accounts are created through the sign-up page.
+  - **Edit Staff** — Update name, role, title, bio, profile picture (via FiveManage upload), social links (Discord, Twitter), visibility, and sub-roles.
+  - **Visibility Toggle** — Eye icon to show/hide staff on the public website. Hidden members appear at 50% opacity in admin.
+  - **Custom Positions** — Create and manage custom positions (e.g., "Community Manager") that can be assigned as titles or sub-roles.
+  - **Sub-Roles** — Multi-select chip selector; displayed as pill badges on public staff cards.
+  - **Drag-to-Reorder** — Drag staff cards to change display order, then save.
+  - **Role-Based Access** — Superadmin manages all staff and positions. Admins manage staff below their level.
+- **Rules Manager** — CRUD for server rules.
+- **Gallery Manager** — CRUD for gallery images.
 
-This project is optimized for deployment on **Vercel**.
+---
 
-1.  **Fork this Repository**: Click the "Fork" button in the top right of this page to create your own copy.
-2.  **Import to Vercel**:
-    -   Go to [Vercel Dashboard](https://vercel.com/dashboard).
-    -   Click **"Add New..."** -> **"Project"**.
-    -   Select your forked `bozorp` repository.
-3.  **Configure Project**:
-    -   **Framework Preset**: Vercel should automatically detect `Vite`.
-    -   **Root Directory**: `./` (default).
-    -   **Build Command**: `npm run build` (default).
-    -   **Output Directory**: `dist` (default).
-4.  **Environment Variables** (Optional): Add any required env vars (see Firebase section below).
-5.  **Deploy**: Click **"Deploy"**.
+## 🛠️ Tech Stack
 
-### 🌐 Custom Domain DNS
+| Technology | Purpose |
+|---|---|
+| [Vite](https://vitejs.dev/) | Build tool |
+| [React](https://react.dev/) | UI framework |
+| [TypeScript](https://www.typescriptlang.org/) | Type safety |
+| [Tailwind CSS](https://tailwindcss.com/) | Utility-first styling |
+| [Framer Motion](https://www.framer.com/motion/) | Animations & drag-to-reorder |
+| [Firebase Auth](https://firebase.google.com/docs/auth) | Authentication (email/password + Google) |
+| [Cloud Firestore](https://firebase.google.com/docs/firestore) | Database |
+| [FiveManage](https://www.fivemanage.com/) | Image uploads |
 
-To connect `bozorp.vexelstudios.xyz`:
-
-1.  Go to your Domain Registrar (where you bought the domain).
-2.  Add a **CNAME** record:
-    -   **Type**: `CNAME`
-    -   **Name**: `bozorp` (subdomain)
-    -   **Value**: `cname.vercel-dns.com`
-3.  (Optional) If using a root domain (e.g., `vexelstudios.xyz`):
-    -   **Type**: `A`
-    -   **Name**: `@`
-    -   **Value**: `76.76.21.21`
+---
 
 ## 🔥 Firebase Setup
 
-The project is designed to integrate with Firebase for Authentication and Firestore.
+1. **Create a project** at [Firebase Console](https://console.firebase.google.com/).
+2. **Register a Web app** and copy the config values.
+3. **Enable Auth providers**: Go to **Authentication → Sign-in method** and enable:
+   - Email/Password
+   - Google
+4. **Create Firestore Database**: Start in production mode.
+5. **Deploy security rules**: Copy the contents of `firestore.rules` into **Firestore → Rules** and publish. This includes rules for `users`, `rules`, `gallery`, and `positions` collections.
 
-1.  **Create a Firebase Project**: Go to [Firebase Console](https://console.firebase.google.com/) and create a new project.
-2.  **Register App**: Add a "Web" app to your project.
-3.  **Get Credentials**: Copy the `firebaseConfig` object values.
-4.  **Configure Environment**:
-    -   Create a `.env` file locally (or add Environment Variables in Vercel):
-    ```env
-    VITE_FIREBASE_API_KEY=your_api_key
-    VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
-    VITE_FIREBASE_PROJECT_ID=your_project_id
-    VITE_FIREBASE_STORAGE_BUCKET=your_project_id.appspot.com
-    VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-    VITE_FIREBASE_APP_ID=your_app_id
-    ```
-5.  **Enable Services**:
-    -   **Authentication**: Enable "Google" and "Email/Password" providers.
-    -   **Firestore**: Create a database (start in Test Mode for development).
-    -   **Storage**: Enable storage if you plan to upload user content.
+### Firestore Collections
 
-## 🛠️ Local Development
+| Collection | Purpose |
+|---|---|
+| `users` | Staff member profiles (role, title, bio, visibility, sub-roles, order) |
+| `positions` | Custom positions for titles and sub-roles |
+| `rules` | Server rules |
+| `gallery` | Gallery images |
 
-1.  **Clone the repo**:
-    ```bash
-    git clone https://github.com/your-username/bozorp.git
-    cd bozorp
-    ```
-2.  **Install dependencies**:
-    ```bash
-    npm install
-    ```
-3.  **Start development server**:
-    ```bash
-    npm run dev
-    ```
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env.local` file (or set in your hosting provider):
+
+```env
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+VITE_FIVEMANAGE_API_KEY=your_fivemanage_key
+```
+
+See `.env.example` for the full template.
+
+---
+
+## 🚀 Local Development
+
+```bash
+# Clone
+git clone https://github.com/derioz/bozorp.git
+cd bozorp
+
+# Install
+npm install
+
+# Dev server
+npm run dev
+
+# Production build
+npm run build
+```
+
+---
+
+## 🌐 Deployment (Vercel)
+
+1. **Import** your repo at [vercel.com/dashboard](https://vercel.com/dashboard).
+2. Vercel auto-detects Vite. Defaults:
+   - Build: `npm run build`
+   - Output: `dist`
+3. Add your **Environment Variables** in the Vercel project settings.
+4. **Deploy**.
+
+### Custom Domain DNS
+
+Add a **CNAME** record at your registrar:
+
+| Type | Name | Value |
+|---|---|---|
+| CNAME | `bozorp` | `cname.vercel-dns.com` |
+
+For a root domain, add an **A** record pointing to `76.76.21.21`.
+
+---
+
+## 📝 Usage Guide
+
+### First-Time Setup
+1. Deploy the app and open the admin panel at `/admin/login`.
+2. Click **SIGN UP** to create your first account with email and password.
+3. In Firebase Console → Firestore, find your user document in the `users` collection and change the `role` field to `superadmin`.
+4. Refresh the admin panel — you now have full superadmin access.
+
+### Managing Staff
+1. Go to **Staff** in the admin sidebar.
+2. Click **Positions** to create custom positions first (e.g., "Community Manager", "Developer").
+3. Click **Add Staff** to add a new staff member (name, role, title, sub-roles).
+4. Click the **pencil icon** to edit any staff member's details, profile picture, bio, or social links.
+5. Click the **eye icon** to toggle visibility on the public website.
+6. **Drag** staff rows to reorder, then click **Save Order**.
+
+### Managing Rules & Gallery
+- Use the **Rules** and **Gallery** tabs in the admin sidebar for CRUD operations.
+
+---
+
+## 👤 Author
+
+**Damon**
 
 ## 📄 License
 
