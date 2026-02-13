@@ -45,7 +45,7 @@ const HomePage: React.FC = () => (
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/bozorp">
       <AuthProvider>
         <Routes>
           {/* Public */}
