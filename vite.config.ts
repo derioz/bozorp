@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: 'docs',
     },
-    base: '/bozorp/',
+    base: '/',
     plugins: [react()],
     define: {
       'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
