@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { db } from '../lib/firebase';
-import { ShimmeringText } from '@/components/ui/elevenlabs/shimmering-text';
+import { Card } from "@/components/ui/elevenlabs/card";
 
 interface StaffMember {
     id: string;
@@ -39,25 +39,11 @@ const StaffCard: React.FC<{ member: StaffMember; index: number; isInView: boolea
             className="group relative perspective-[1000px]"
             onClick={() => onSelect(member)}
         >
-            <div
-                className="relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 group-hover:scale-[1.03]"
-                style={{
-                    boxShadow: `0 0 0 1px rgba(255,255,255,0.05), 0 20px 60px -20px ${config.glow}`,
-                }}
+            <Card
+                className="relative h-full border-white/5 bg-[#0a0004] overflow-hidden cursor-pointer transition-all duration-500 group-hover:scale-[1.03] group-hover:border-[#a200ff]/30 group-hover:shadow-[0_20px_60px_-20px_rgba(162,0,255,0.2)]"
             >
-                {/* Animated border glow on hover */}
-                <div
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"
-                    style={{
-                        background: `linear-gradient(135deg, ${config.color}40, transparent 50%, ${config.color}20)`,
-                        padding: '1px',
-                        mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                        maskComposite: 'exclude',
-                    }}
-                />
-
-                {/* Image */}
-                <div className="aspect-[3/4] relative overflow-hidden bg-[#0a0004]">
+                {/* Image Area */}
+                <div className="aspect-[3/4] relative overflow-hidden">
                     {member.profilePicture ? (
                         <img
                             src={member.profilePicture}
@@ -68,10 +54,6 @@ const StaffCard: React.FC<{ member: StaffMember; index: number; isInView: boolea
                     ) : (
                         <div className="w-full h-full bg-gradient-to-br from-[#0f0409] via-[#0a0004] to-[#0f0409] flex items-center justify-center">
                             <div className="relative">
-                                <div
-                                    className="absolute inset-0 rounded-full blur-2xl opacity-30"
-                                    style={{ backgroundColor: config.color }}
-                                />
                                 <span className="material-symbols-outlined text-7xl relative" style={{ color: `${config.color}50` }}>
                                     person
                                 </span>
@@ -79,106 +61,76 @@ const StaffCard: React.FC<{ member: StaffMember; index: number; isInView: boolea
                         </div>
                     )}
 
-                    {/* Multi-layer gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    {/* Enhanced Gradient Overlay for Text Visibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#a200ff]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                    {/* Scan line effect */}
-                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-                        style={{
-                            backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)',
-                        }}
-                    />
-
-                    {/* Top accent line */}
+                    {/* Role Indicator Bar */}
                     <div
-                        className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-80 transition-opacity duration-500"
-                        style={{ background: `linear-gradient(to right, transparent, ${config.color}, transparent)` }}
-                    />
-
-                    {/* Bottom role glow bar */}
-                    <motion.div
-                        className="absolute bottom-0 left-0 right-0 h-[3px]"
-                        style={{ background: `linear-gradient(to right, transparent, ${config.color}, transparent)` }}
-                        initial={{ opacity: 0.4, scaleX: 0.5 }}
-                        whileInView={{ opacity: 0.8, scaleX: 1 }}
-                        transition={{ duration: 1, delay: 0.3 + index * 0.1 }}
+                        className="absolute bottom-0 left-0 right-0 h-1"
+                        style={{ backgroundColor: config.color, boxShadow: `0 0 10px ${config.color}` }}
                     />
                 </div>
 
-                {/* Info overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 z-20">
-                    {/* Role tag */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: 0.4 + index * 0.1 }}
-                        className="mb-2"
-                    >
-                        <span
-                            className="inline-flex items-center gap-1.5 text-[9px] uppercase tracking-[0.3em] font-black px-2.5 py-1 rounded-md backdrop-blur-sm"
-                            style={{
-                                color: config.color,
-                                backgroundColor: `${config.color}15`,
-                                border: `1px solid ${config.color}25`,
-                            }}
-                        >
-                            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: config.color }} />
-                            {member.title || config.label}
-                        </span>
-                    </motion.div>
-
-                    {/* Sub-roles */}
-                    {member.subRoles?.length > 0 && (
-                        <div className="flex flex-wrap gap-1 mb-2">
-                            {member.subRoles.map((sr) => (
-                                <span
-                                    key={sr}
-                                    className="text-[8px] uppercase tracking-[0.2em] font-bold px-2 py-0.5 rounded backdrop-blur-sm bg-white/[0.06] text-gray-400 border border-white/[0.08]"
-                                >
-                                    {sr}
-                                </span>
-                            ))}
-                        </div>
-                    )}
-
-                    {/* Name */}
-                    <h3 className="text-white font-display text-lg md:text-xl tracking-wide leading-tight">
-                        {member.displayName}
-                    </h3>
-
-                    {/* Bio preview on hover */}
-                    <AnimatePresence>
-                        {member.bio && (
-                            <motion.p
-                                className="text-gray-400/80 text-xs mt-2 line-clamp-2 leading-relaxed"
-                                initial={{ opacity: 0, height: 0 }}
-                                whileHover={{ opacity: 1, height: 'auto' }}
+                {/* Content Overlay - Positioned appropriately */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-20 flex flex-col justify-end h-full pointer-events-none">
+                    <div className="mt-auto">
+                        {/* Role Badge */}
+                        <div className="mb-3">
+                            <span
+                                className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-[0.2em] border shadow-lg backdrop-blur-md"
+                                style={{
+                                    backgroundColor: `${config.color}`,
+                                    color: '#000',
+                                    borderColor: config.color
+                                }}
                             >
-                                {member.bio}
-                            </motion.p>
-                        )}
-                    </AnimatePresence>
-
-                    {/* Social icons on hover */}
-                    {(member.socialLinks?.discord || member.socialLinks?.twitter) && (
-                        <div className="flex gap-3 mt-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                            {member.socialLinks.discord && (
-                                <span className="text-gray-500 hover:text-white text-[10px] tracking-wider transition-colors cursor-pointer flex items-center gap-1">
-                                    <span className="material-symbols-outlined text-xs">chat</span>
-                                    {member.socialLinks.discord}
-                                </span>
-                            )}
-                            {member.socialLinks.twitter && (
-                                <span className="text-gray-500 hover:text-white text-[10px] tracking-wider transition-colors cursor-pointer flex items-center gap-1">
-                                    <span className="material-symbols-outlined text-xs">alternate_email</span>
-                                    {member.socialLinks.twitter}
-                                </span>
-                            )}
+                                {member.title || config.label}
+                            </span>
                         </div>
-                    )}
+
+                        {/* Sub-roles */}
+                        {member.subRoles?.length > 0 && (
+                            <div className="flex flex-wrap gap-1 mb-3">
+                                {member.subRoles.map((sr) => (
+                                    <span
+                                        key={sr}
+                                        className="text-[9px] uppercase tracking-[0.1em] font-bold px-2 py-1 rounded bg-black/60 text-white/80 border border-white/10"
+                                    >
+                                        {sr}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
+
+                        {/* Name */}
+                        <h3 className="text-white font-display text-2xl lg:text-3xl tracking-wide leading-none mb-2 drop-shadow-md">
+                            {member.displayName}
+                        </h3>
+
+                        {/* Bio / Extra Info */}
+                        <div className="overflow-hidden transition-all duration-300 max-h-0 group-hover:max-h-20 opacity-0 group-hover:opacity-100">
+                            <p className="text-gray-300 text-sm font-light leading-relaxed mb-4 line-clamp-2">
+                                {member.bio || "Staff Member"}
+                            </p>
+
+                            {/* Socials */}
+                            <div className="flex gap-4 pointer-events-auto">
+                                {member.socialLinks?.discord && (
+                                    <span className="text-white/70 hover:text-white flex items-center gap-1 text-xs font-medium bg-white/10 px-2 py-1 rounded">
+                                        <span className="material-symbols-outlined text-sm">chat</span> Discord
+                                    </span>
+                                )}
+                                {member.socialLinks?.twitter && (
+                                    <span className="text-white/70 hover:text-white flex items-center gap-1 text-xs font-medium bg-white/10 px-2 py-1 rounded">
+                                        <span className="material-symbols-outlined text-sm">alternate_email</span> Twitter
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </Card>
         </motion.div>
     );
 };
