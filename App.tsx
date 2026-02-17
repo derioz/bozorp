@@ -23,6 +23,7 @@ import GalleryManager from './pages/admin/GalleryManager';
 import RulesManager from './pages/admin/RulesManager';
 import StaffManager from './pages/admin/StaffManager';
 import ProfileSettings from './pages/admin/ProfileSettings';
+import Changelog from './pages/admin/Changelog';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 
 const HomePage: React.FC = () => (
@@ -53,20 +54,20 @@ const App: React.FC = () => {
 
           {/* Admin */}
           <Route path="/admin/login" element={<Login />} />
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute>
-                <AdminLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<Dashboard />} />
-            <Route path="gallery" element={<GalleryManager />} />
-            <Route path="rules" element={<RulesManager />} />
-            <Route path="staff" element={<StaffManager />} />
-            <Route path="profile" element={<ProfileSettings />} />
-          </Route>
+          <Route path="/admin/*" element={
+            <ProtectedRoute>
+              <AdminLayout>
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="gallery" element={<GalleryManager />} />
+                  <Route path="rules" element={<RulesManager />} />
+                  <Route path="staff" element={<StaffManager />} />
+                  <Route path="profile" element={<ProfileSettings />} />
+                  <Route path="changelog" element={<Changelog />} />
+                </Routes>
+              </AdminLayout>
+            </ProtectedRoute>
+          } />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

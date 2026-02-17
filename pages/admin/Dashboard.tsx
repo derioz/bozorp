@@ -48,6 +48,7 @@ const Dashboard: React.FC = () => {
         { label: 'Edit Rules', icon: 'gavel', to: '/admin/rules', desc: 'Add, edit, reorder rules' },
         { label: 'Manage Staff', icon: 'group', to: '/admin/staff', desc: 'Staff roles & profiles' },
         { label: 'My Profile', icon: 'person', to: '/admin/profile', desc: 'Edit your profile' },
+        { label: 'System Changelog', icon: 'history', to: '/admin/changelog', desc: 'View deployment history' },
     ];
 
     return (
