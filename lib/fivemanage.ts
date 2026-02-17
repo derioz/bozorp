@@ -7,8 +7,11 @@ export interface UploadResult {
 }
 
 export async function uploadToFiveManage(file: File): Promise<UploadResult> {
-    console.log('FiveManage Upload Initialized. Key length:', FIVEMANAGE_API_KEY?.length);
+    console.log(`[FiveManage] Uploading file: ${file.name} (${file.size} bytes, ${file.type})`);
+    console.log(`[FiveManage] Key configured: ${!!FIVEMANAGE_API_KEY} (Length: ${FIVEMANAGE_API_KEY?.length})`);
+
     if (!FIVEMANAGE_API_KEY) {
+        console.error('[FiveManage] CRITICAL: API key is missing or empty string');
         throw new Error('FiveManage API key is not configured');
     }
 
