@@ -40,15 +40,15 @@ const StaffCard: React.FC<{ member: StaffMember; index: number; isInView: boolea
             onClick={() => onSelect(member)}
         >
             <Card
-                className="relative h-full border-white/5 bg-[#0a0004] overflow-hidden cursor-pointer transition-all duration-500 group-hover:scale-[1.03] group-hover:border-[#a200ff]/30 group-hover:shadow-[0_20px_60px_-20px_rgba(162,0,255,0.2)]"
+                className="relative h-full border-white/5 bg-[#0a0004] overflow-hidden cursor-pointer transition-all duration-500 group-hover:scale-[1.03] group-hover:border-[#a200ff]/30 group-hover:shadow-[0_20px_60px_-20px_rgba(162,0,255,0.2)] !p-0 !gap-0"
             >
                 {/* Image Area */}
-                <div className="aspect-[3/4] relative overflow-hidden">
+                <div className="aspect-[4/5] relative overflow-hidden">
                     {member.profilePicture ? (
                         <img
                             src={member.profilePicture}
                             alt={member.displayName}
-                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
+                            className="w-full h-full object-cover object-top transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
                             loading="lazy"
                         />
                     ) : (
