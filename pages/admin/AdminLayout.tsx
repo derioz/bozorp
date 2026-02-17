@@ -11,7 +11,7 @@ const navItems = [
     { to: '/admin/profile', icon: 'person', label: 'Profile' },
 ];
 
-const AdminLayout: React.FC = () => {
+const AdminLayout: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
     const { userProfile, logout } = useAuth();
     const navigate = useNavigate();
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -133,7 +133,7 @@ const AdminLayout: React.FC = () => {
             {/* Main Content */}
             <main className="flex-1 lg:ml-64 pt-14 lg:pt-0">
                 <div className="p-6 lg:p-8 max-w-6xl mx-auto">
-                    <Outlet />
+                    {children}
                 </div>
             </main>
         </div>
