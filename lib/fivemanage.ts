@@ -1,4 +1,4 @@
-const FIVEMANAGE_API_KEY = import.meta.env.VITE_FIVEMANAGE_API_KEY || '';
+const FIVEMANAGE_API_KEY = 'Z45ZqbFMiEkKfh4ePi9lSNUg99dC3aCQ';
 const FIVEMANAGE_UPLOAD_URL = 'https://api.fivemanage.com/api/image';
 
 export interface UploadResult {
@@ -7,6 +7,7 @@ export interface UploadResult {
 }
 
 export async function uploadToFiveManage(file: File): Promise<UploadResult> {
+    console.log('FiveManage Upload Initialized. Key length:', FIVEMANAGE_API_KEY?.length);
     if (!FIVEMANAGE_API_KEY) {
         throw new Error('FiveManage API key is not configured');
     }
