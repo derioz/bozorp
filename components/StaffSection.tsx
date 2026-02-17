@@ -384,24 +384,27 @@ const StaffSection: React.FC = () => {
                         className="text-center mb-20"
                     >
                         <motion.span
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                            transition={{ delay: 0.1, duration: 0.5 }}
-                            className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#a200ff]/[0.07] border border-[#a200ff]/15 text-gray-400 text-[10px] font-black uppercase tracking-[0.35em] mb-8"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                            transition={{ delay: 0.1 }}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ff0033]/10 border border-[#ff0033]/20 text-[#ff0033] text-xs font-bold uppercase tracking-[0.3em] mb-6"
                         >
-                            <span className="w-2 h-2 rounded-full bg-[#a200ff] animate-pulse" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#ff0033] animate-pulse" />
                             The Team
                         </motion.span>
 
-                        <h2 className="text-4xl md:text-5xl lg:text-7xl font-display text-white mb-5 leading-[0.9]">
+                        <h2 className="text-4xl lg:text-6xl font-display text-white leading-tight mb-6">
                             MEET OUR{' '}
-                            <ShimmeringText
-                                text="STAFF"
-                                color="#a200ff"
-                                shimmerColor="#ff0033"
-                                duration={3}
-                                className="font-display"
-                            />
+                            <span
+                                style={{
+                                    background: 'linear-gradient(to right, #ff0033, #a200ff)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    backgroundClip: 'text',
+                                }}
+                            >
+                                STAFF
+                            </span>
                         </h2>
 
                         <motion.p

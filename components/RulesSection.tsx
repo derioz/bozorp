@@ -84,7 +84,7 @@ const RulesSection: React.FC = () => {
             Code of Conduct
           </motion.span>
 
-          <h2 className="text-4xl md:text-5xl font-display text-white mb-6">
+          <h2 className="text-4xl lg:text-6xl font-display text-white mb-6 leading-tight">
             SERVER{' '}
             <span
               style={{

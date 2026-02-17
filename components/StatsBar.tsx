@@ -61,7 +61,7 @@ const StatItem: React.FC<StatItemProps> = ({ icon, label, value, tooltipContent 
         {/* Text Content */}
         <div>
           <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 group-hover:text-gray-300 transition-colors">{label}</p>
-          <div className="text-xl font-circus text-white tracking-wide">{value}</div>
+          <div className="text-xl font-display text-white tracking-wide">{value}</div>
         </div>
 
         {/* Active Indicator for Tooltip Items */}
@@ -130,7 +130,7 @@ const PoliceTooltipContent = () => (
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
         backgroundClip: 'text'
-      }} className="font-circus text-sm tracking-[0.2em] animate-pulse">STEP UP. BADGE UP.</span>
+      }} className="font-display text-sm tracking-[0.2em] animate-pulse">STEP UP. BADGE UP.</span>
     </div>
   </div>
 );

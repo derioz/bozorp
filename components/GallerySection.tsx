@@ -97,11 +97,11 @@ const GallerySection: React.FC = () => {
                             Visual Evidence
                         </motion.span>
 
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-display text-white mb-4">
+                        <h2 className="text-4xl lg:text-6xl font-display text-white mb-6 leading-tight">
                             MEDIA{' '}
                             <span
                                 style={{
-                                    background: 'linear-gradient(to right, #ff0033, #ff6666)',
+                                    background: 'linear-gradient(to right, #ff0033, #a200ff)',
                                     WebkitBackgroundClip: 'text',
                                     WebkitTextFillColor: 'transparent',
                                     backgroundClip: 'text',

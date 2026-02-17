@@ -272,7 +272,7 @@ const ActivitiesSection: React.FC = () => {
             Welcome To The City
           </motion.span>
 
-          <h2 className="text-4xl md:text-6xl font-display text-white mb-8 tracking-wide">
+          <h2 className="text-4xl lg:text-6xl font-display text-white mb-8 leading-tight">
             CHOOSE YOUR{' '}
             <span className="relative inline-block">
               <motion.span
@@ -283,7 +283,7 @@ const ActivitiesSection: React.FC = () => {
               <span
                 className="relative z-10"
                 style={{
-                  background: 'linear-gradient(to right, #ff0033, #ff5e00)',
+                  background: 'linear-gradient(to right, #ff0033, #a200ff)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
